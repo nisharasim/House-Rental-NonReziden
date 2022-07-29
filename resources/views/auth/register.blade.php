@@ -67,20 +67,6 @@
 
 
                         <div class="form-group row"> 
-                            <label for="nid" class="col-md-4 col-form-label text-md-right">{{ __('Nid') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="nid" type="text" class="form-control @error('nid') is-invalid @enderror" name="nid" value="{{ old('nid') }}" required autocomplete="nid" autofocus>
-
-                                @error('nid')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row"> 
                             <label for="contact" class="col-md-4 col-form-label text-md-right">{{ __('Contact') }}</label>
 
                             <div class="col-md-6">
@@ -188,31 +174,28 @@
 
             <div class="input-group mb-3">
                <select name="role_id" class="form-control" value="{{ old('role_id') }}">
-                        <option value="">select a role</option>
+                        <option value="">Select a role</option>
                         <option value="2" {{ old('role_id') == 2 ? 'selected' : ''   }} >Landlord</option>
                         <option value="3" {{ old('role_id') == 3 ? 'selected' : ''  }} >Renter</option>
                 </select>
             </div>
 
+
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Nid number" name="nid" value="{{ old('nid') }}">
+                <input type="text" class="form-control" placeholder=" Contact Eg: 60127781067 " name="contact" value="{{ old('contact') }}">
             </div>
 
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="contact (please add 88 before number)" name="contact" value="{{ old('contact') }}">
+                <input type="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}">
             </div>
 
             <div class="input-group mb-3">
-                <input type="email" class="form-control" placeholder="email" name="email" value="{{ old('email') }}">
-            </div>
-
-            <div class="input-group mb-3">
-                <input id="password" type="password" class="form-control" placeholder="password (must be 8 digits)" name="password">
+                <input id="password" type="password" class="form-control" placeholder="Password (must be 8 digits)" name="password">
             </div>
 
 
             <div class="input-group mb-3">
-                <input id="password-confirm" type="password" placeholder="confirm password" class="form-control" name="password_confirmation" >
+                <input id="password-confirm" type="password" placeholder="Confirm Password" class="form-control" name="password_confirmation" >
 
             </div>
             

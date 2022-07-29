@@ -50,11 +50,14 @@ class HouseController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
+            'name_house'=> 'required',
             'address' => 'required',
+            'address_latitude'  => 'required',
+            'address_longitude'  => 'required',
             'area_id' => 'required',
             'number_of_room' => 'required|numeric|integer',
             'number_of_toilet' => 'required|numeric|integer',
-            'number_of_belcony' => 'required|numeric|integer',
+            'desc' => 'required',
             'rent' => 'required|numeric',
             'featured_image' => 'required|mimes:jpeg,png,jpg',
             'images.*' => 'required|mimes:jpeg,png,jpg',
@@ -69,7 +72,7 @@ class HouseController extends Controller
             $featured_image_name = $currentDate.'-'.uniqid().'.'.$featured_image->getClientOriginalExtension();
   
   
-          // Check Dir is exists
+          // Check Directory of image is exists
   
               if (!Storage::disk('public')->exists('featured_house')) {
                  Storage::disk('public')->makeDirectory('featured_house');
@@ -95,14 +98,17 @@ class HouseController extends Controller
         }
     
         $house = new House();
+        $house->name_house = $request->name_house;
         $house->address = $request->address;
+        $house->address_latitude = $request->address_latitude;
+        $house->address_longitude = $request->address_longitude;
         $house->user_id = Auth::id();
         $house->contact = Auth::user()->contact;
         $house->area_id = $request->area_id;
         $house->number_of_toilet = $request->number_of_toilet;
         $house->number_of_room = $request->number_of_room;
-        $house->number_of_belcony = $request->number_of_belcony;
         $house->rent = $request->rent;
+        $house->desc = $request->desc;
         $house->images = json_encode($data);
         $house->featured_image = $featured_image_name;
         $house->save();
@@ -165,14 +171,15 @@ class HouseController extends Controller
         
         
         $this->validate($request,[
+            'name_house'=> 'required',
             'address' => 'required',
+            'address_latitude'  => 'required',
+            'address_longitude'  => 'required',
             'area_id' => 'required',
             'number_of_room' => 'required|numeric|integer',
             'number_of_toilet' => 'required|numeric|integer',
-            'number_of_belcony' => 'required|numeric|integer',
+            'desc' => 'required',
             'rent' => 'required|numeric',
-            'featured_image' => 'mimes:jpeg,png,jpg',
-            'images.*' => 'mimes:jpeg,png,jpg',
         ]);
 
         //handle featured image
@@ -222,12 +229,15 @@ class HouseController extends Controller
              $house->images=json_encode($data);
         }
 
+        $house->name_house = $request->name_house;
         $house->address = $request->address;
+        $house->address_latitude = $request->address_latitude;
+        $house->address_longitude = $request->address_longitude;
         $house->area_id = $request->area_id;
         $house->number_of_toilet = $request->number_of_toilet;
         $house->number_of_room = $request->number_of_room;
-        $house->number_of_belcony = $request->number_of_belcony;
         $house->rent = $request->rent;
+        $house->desc = $request->desc;
         $house->save();
         return redirect(route('landlord.house.index'))->with('success', 'House Updated successfully');
 

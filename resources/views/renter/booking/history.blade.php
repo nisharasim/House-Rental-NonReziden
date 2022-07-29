@@ -27,7 +27,6 @@
                           <th>Renter Name</th>
                           <th>Landlord Name</th>
                           <th>Landlord Contact</th>
-                          <th>Landlord Nid</th>
                           <th>Landlord Email</th>
                           
                        
@@ -61,13 +60,7 @@
                                 This landlord is deleted by admin
                             @endisset
                           </td>
-                          <td>
-                            @isset($book->landlord->nid)
-                                {{ $book->landlord->nid }}
-                            @else 
-                                This landlord is deleted by admin
-                            @endisset  
-                          </td>
+                          
                           <td>
                             @isset($book->landlord->email)
                                 {{ $book->landlord->email }}

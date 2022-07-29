@@ -2,7 +2,7 @@
 
 
 @section('title')
-    House Rent - Reset Password  
+    Non Reziden - Reset Password  
 @endsection
 
 @section('content')

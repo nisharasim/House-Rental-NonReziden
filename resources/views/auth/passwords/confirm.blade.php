@@ -1,7 +1,7 @@
 @extends('layouts.frontend.app')
 
 @section('title')
-    House Rent - Confirm Password   
+    Non Reziden - Confirm Password   
 @endsection
 
 @section('content')

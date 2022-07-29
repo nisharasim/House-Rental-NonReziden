@@ -79,16 +79,13 @@ class DashboardController extends Controller
         return redirect()->route('renter.houses.details', $review->house_id)->with('success', 'Review Updated Successfully');
     }
 
-
-
-
     public function bookingHistory(){
-        $books = Booking::where('renter_id', Auth::id())->where('booking_status', '!=' , "requested")->get();
+        $books = Booking::where('id', Auth::id())->where('booking_status', '!=' , "requested")->get();
         return view('renter.booking.history', compact('books'));
     }
 
     public function bookingPending(){
-        $books = Booking::where('renter_id', Auth::id())->where('booking_status', "requested")->get();
+        $books = Booking::where('id', Auth::id())->where('booking_status', "requested")->get();
         return view('renter.booking.pending', compact('books'));
     }
 

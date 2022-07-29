@@ -8,7 +8,7 @@
             <div class="col-md-9">
                 <div class="card mt-5">
                     <div class="card-header">
-                      <h3 class="card-title float-left"><strong>Edit House</strong></h3>
+                      <h3 class="card-title float-left"><strong>Edit House Details</strong></h3>
                   
                     </div>
                     <!-- /.card-header -->
@@ -18,9 +18,30 @@
                     <form action="{{ route('landlord.house.update', $house->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
+                            <div class="form-group">
+					          <label for="name_house">House Name: </label>
+					          <input type="text" class="form-control" placeholder="Eg: Flat Taman Seroja" id="name_house" name="name_house" value="{{ old('name_house', $house->name_house) }}">
+                            </div>
+
+                            <!-- calling and update new input address connect with map-->
 					        <div class="form-group">
 					          <label for="address">Address: </label>
-					          <input type="text" class="form-control" placeholder="Enter address" id="address" name="address" value="{{ old('address', $house->address) }}">
+					          <input type="text" class="form-control map-input" placeholder="Eg: JB 7345 Taman Merlimau Utara" id="address" name="address" value="{{ old('address',$house->address) }}">
+                            </div>
+
+                            <!-- hidden the latitude from input address connect with map-->
+                            <div class="form-group">
+                                <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
+                            </div>
+
+                            <!-- hidden the longitudefrom input address connect with map-->
+                            <div class="form-group">
+                                <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
+                            </div>
+
+                            <!--show address on map-->
+                            <div id="address-map-container" style="width:100%;height:400px; ">
+                                <div style="width: 100%; height: 100%" id="address-map"></div>
                             </div>
 
                             <div class="form-group">
@@ -41,22 +62,22 @@
                             
                             <div class="form-group">
                                 <label for="number_of_room">Number of  rooms: </label>
-                                <input type="text" class="form-control" placeholder="number_of_room" id="number_of_room" name="number_of_room" value="{{ old('number_of_room',$house->number_of_room) }}">
+                                <input type="text" class="form-control" placeholder="number of rooms" id="number_of_room" name="number_of_room" value="{{ old('number_of_room',$house->number_of_room) }}">
                             </div>
 
                             <div class="form-group">
-                                <label for="number_of_toilet">Number of toilet: </label>
-                                <input type="text" class="form-control" placeholder="number_of_toilet" id="number_of_toilet" name="number_of_toilet" value="{{ old('number_of_toilet',$house->number_of_toilet) }}">
+                                <label for="number_of_toilet">Bathrooms: </label>
+                                <input type="text" class="form-control" placeholder="number of toilet" id="number_of_toilet" name="number_of_toilet" value="{{ old('number_of_toilet',$house->number_of_toilet) }}">
                             </div>
 
                             <div class="form-group">
-                                <label for="number_of_belcony">Number of  belcony: </label>
-                                <input type="text" class="form-control" placeholder="number_of_belcony" id="number_of_belcony" name="number_of_belcony" value="{{ old('number_of_belcony',$house->number_of_belcony) }}">
+                                <label for="rent">Price Rent (RM): </label>
+                                <input type="text" class="form-control" placeholder="Eg: RM 700" id="rent" name="rent" value="{{ old('rent', $house->rent) }}">
                             </div>
 
                             <div class="form-group">
-                                <label for="rent">Rent: </label>
-                                <input type="text" class="form-control" placeholder="rent" id="rent" name="rent" value="{{ old('rent', $house->rent) }}">
+                                <label for="desc">Description Details: </label>
+                                <input type="text" class="form-control" placeholder="Enter any details description about the house and its surrounding" id="number_of_toilet" name="desc" value="{{ old('desc', $house->desc) }}">
                             </div>
 
                             <div class="form-group">
@@ -86,3 +107,10 @@
         </div>
     </div><!-- /.container -->
  @endsection
+
+
+ @section('scripts')
+    @parent
+    <script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API_KEY')}}&libraries=places&callback=initialize" async defer></script>
+    <script src="/js/mapInput.js"></script>
+@stop

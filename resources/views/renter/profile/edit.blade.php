@@ -8,7 +8,7 @@
             <div class="col-md-9">
                 <div class="card mt-5">
                     <div class="card-header">
-                      <h3 class="card-title float-left"><strong>Edit Profile</strong></h3>
+                      <h3 class="card-title float-left"><strong>Edit Profile Information</strong></h3>
                   
                     </div>
                     <!-- /.card-header -->
@@ -30,11 +30,6 @@
                             <div class="form-group">
                                 <label for="email">Email: </label>
                                 <input type="text" class="form-control" placeholder="Email" id="email" name="email" value="{{ old('email', $profile->email) }}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="nid">Nid: </label>
-                                <input type="text" class="form-control" placeholder="Nid" id="nid" name="nid" value="{{ old('nid', $profile->nid) }}">
                             </div>
 
                             <div class="form-group">

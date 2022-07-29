@@ -33,13 +33,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="nid">Nid: </label>
-                                <input type="text" class="form-control" placeholder="Nid" id="nid" name="nid" value="{{ old('nid', $profile->nid) }}">
-                            </div>
-
-                            <div class="form-group">
                                 <label for="contact">Contact: </label>
-                                <input type="text" class="form-control" placeholder="contact (please add 88 before number)" id="contact" name="contact" value="{{ old('contact', $profile->contact) }}">
+                                <input type="text" class="form-control" placeholder="Eg: 60127781067" id="contact" name="contact" value="{{ old('contact', $profile->contact) }}">
                             </div>
 
                             <div class="form-group">
@@ -49,7 +44,7 @@
 
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success">Update</button>
-                                <a href="{{ route('admin.profile.show') }}" class="btn btn-danger wave-effect" >Back</a>
+                                <a href="{{ route('landlord.profile.show') }}" class="btn btn-danger wave-effect" >Back</a>
                         </div>
                   </form>
                      

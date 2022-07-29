@@ -21,12 +21,11 @@
                         <thead>
                         <tr>
                           <th>Address</th>
-                          <th>Entry</th>
-                          <th>Leave</th>
-                          <th>Rent</th>
+                          <th>Date Entry</th>
+                          <th>Date Leave</th>
+                          <th>Price Rent</th>
                           <th>Renter Name</th>
                           <th>Renter Contact</th>
-                          <th>Renter Nid</th>
                           <th>Renter Email</th>
                         </tr>
                         </thead>
@@ -50,13 +49,6 @@
                             @else 
                                 This renter is deleted by admin
                             @endisset
-                          </td>
-                          <td>
-                            @isset($book->renter->nid)
-                                {{ $book->renter->nid }}
-                            @else 
-                                This renter is deleted by admin
-                            @endisset  
                           </td>
                           <td>
                             @isset($book->renter->email)

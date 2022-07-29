@@ -17,12 +17,12 @@
                     <div class="col-md-4">
                         <div class="card m-3">
                             <div class="card-header">
-                                <img src="{{ asset('storage/featured_house/'. $house->featured_image) }}" width="100%"
+                                <img src="{{ asset('/storage/featured_house/'. $house->featured_image) }}" width="100%"
                                     class="img-fluid" alt="Card image">
                             </div>
                             <div class="card-body">
                                 <p>
-                                    <h4><strong><i class="fas fa-map-marker-alt"> {{ $house->area->name }}, Sylhet</i>
+                                    <h4><strong><i class="fas fa-map-marker-alt"> {{ $house->area->name }}</i>
                                         </strong></h4>
                                 </p>
 
@@ -33,7 +33,7 @@
                                         class="fas fa-bath float-right"> {{ $house->number_of_toilet }} Bathrooms</i>
                                 </p>
                                 <p class="grey">
-                                    <h4>৳ {{ $house->rent }} BDT</i></h4>
+                                    <h4>RM{{ $house->rent }}</i></h4>
                                 </p>
                             </div>
                             <div class="card-footer">

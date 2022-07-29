@@ -1,7 +1,7 @@
 @extends('layouts.frontend.app')
 
 @section('title')
-    House Rent - Homepage
+    Non Reziden - Homepage
 @endsection
     
 @section('content')
@@ -23,10 +23,10 @@
                         </div> 
                         <div class="row">
                             <div class="form-group col-md-4">
-                                <input type="text" name="address" placeholder="search an area" class="form-control">
+                                <input type="text" name="address" placeholder="Search an area" class="form-control">
                             </div>
                             <div class="form-group col-md-2">
-                                {{-- <input type="text" name="room" placeholder="room" class="form-control"> --}}
+                                {{-- <input type="text" name="room" placeholder="Rooms" class="form-control"> --}}
                                 <select name="room"  class="form-control">
                                     <option value="" >rooms</option>
                                     <option value="1">1</option>
@@ -39,7 +39,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-2">
-                                {{-- <input type="text" name="bathroom" placeholder="bathroom" class="form-control"> --}}
+                                {{-- <input type="text" name="bathroom" placeholder="Bathrooms" class="form-control"> --}}
                                 <select name="bathroom"  class="form-control">
                                     <option value="" >bathroom</option>
                                     <option value="1">1</option>
@@ -50,7 +50,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-2">
-                                <input type="text" name="rent" placeholder="rent" class="form-control">
+                                <input type="text" name="rent" placeholder="Price Rent" class="form-control">
                             </div>
                             <div class="form-group col-md-2">
                                 <button type="submit" class="btn btn-success">Search</button>
@@ -65,28 +65,39 @@
 
     <div id="content">
        <div class="container">
+
+       <!-- this is to show marker or the map-->
+        <div class="row justify-content-center py-5">
+            <div style="width:100%; height:400px" id="map"></div>
+        </div>
+
         <div class="row justify-content-center py-5">
             <h1><strong>Available Houses</strong></h1>
             <hr>
         </div>
+
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-12">
                 
                    <div class="row">
                         @forelse ($houses as $house)
-                            <div class="col-md-6">
-                                <div class="card m-3 house-card">
+                            <div class="col-md-4">
+                                <div class="card m-4 house-card">
+                                    <!-- this to show the image of the house -->
                                     <div class="card-header">
-                                        <img  src="{{ asset('storage/featured_house/'. $house->featured_image) }}" width="100%" class="img-fluid" alt="Card image">
+                                        <img  src="{{ asset('/storage/featured_house/'. $house->featured_image) }}" width="100%" class="img-fluid" alt="Card image">
                                     </div>
+                                    <!-- this is to get all the details of the house-->
                                     <div class="card-body">
-                                        <p><h4><strong><i class="fas fa-map-marker-alt"> {{ $house->area->name }}, Sylhet</i> </strong></h4></p>
+                                        <p><h4><strong><i class="fas fa-map-marker-alt"> {{ $house->area->name }}</i> </strong></h4></p>
                                     
                                         <p class="grey"><a class="address" href="{{ route('house.details', $house->id) }}"><i class="fas fa-warehouse"> {{ $house->address }}</i></a> </p>
                                         <hr>
                                         <p class="grey"><i class="fas fa-bed"></i> {{ $house->number_of_room }} Bedrooms  <i class="fas fa-bath float-right"> {{ $house->number_of_toilet }} Bathrooms</i> </p>
-                                        <p class="grey"><h4>৳ {{ $house->rent }} BDT</i></h4> </p>
+                                        <p class="grey"><h4>RM {{ $house->rent }}</i></h4> </p>
                                     </div>
+
+                                    <!-- action to take which is to show the details of the house-->
                                     <div class="card-footer">
                                         <div class="d-flex justify-content-between">
                                             <div>
@@ -110,91 +121,48 @@
                     
                    
             </div>
-            <div class="col-md-3">
-                <ul class="list-group sort">
-                    <li class="list-group-item bg-dark text-light sidebar-heading"><strong>Search By Range</strong></li>
-                    <form action="{{ route('searchByRange') }}" method="get" class="mt-2">
-                        <div class="form-group">
-                            <input type="number" class="form-control" required name="digit1" placeholder="enter range (lower value)">
-                        </div>
-                        <div class="form-group">
-                            <input type="number" class="form-control" required name="digit2" placeholder="enter range (upper value)">
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-sm btn-success btn-block">Search</button>
-                        </div>
-                    </form>
-                </ul>
-
-
-
-
-                    <ul class="list-group sort">
-                        <li class="list-group-item bg-dark text-light sidebar-heading"><strong>Sort By Price</strong></li>
-                        <li class="list-group-item order"><a href="{{ route('highToLow') }}">High to low</a></li>
-                        <li class="list-group-item order"><a href="{{ route('lowToHigh') }}">Low to High</a></li>
-                        <li class="list-group-item order"><a href="{{ route('welcome') }}">Normal Order</a></li>
-                    </ul>
-
-
-
-                    <ul class="list-group area-show">
-                        <li class="list-group-item bg-dark text-light sidebar-heading"><strong>Areas</strong></li>
-                        @forelse ($areas as $area)
-                            <li class="list-group-item all-areas">
-                                <a href="{{ route('available.area.house', $area->id) }}" class="area-name">{{ $area->name }} <strong>({{ $area->houses->count() }})</strong></a>
-                            </li>
-                        @empty  
-                            <li class="list-group-item">Area not found</li>
-                        @endforelse
-                        
-                    </ul>
-            </div>
+            
         </div>
        
        </div>
     </div>
+@endsection
 
+@section('scripts')
+<script>
+    function initMap() {
+        //dd($houses);
+        var locations =  [
+            @foreach($houses as $house)
+               [{{$house->id}},{{$house->address_latitude}}, {{$house->address_longitude}},'{{$house->name_house}}','{{$house->address}}'],
+            @endforeach
+        ];
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 11,
+            center: new google.maps.LatLng(2.2214,102.4531),  //lat and lang uitm jasin
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
 
+        var infowindow = new google.maps.InfoWindow();
+            var marker, i;
+            for (i = 0; i < locations.length; i++) {
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    map: map
+                });
 
-    <div class="section-4 bg-dark">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-7">
-					<img src="{{ asset('frontend/img/why.jpg') }}" class="section-4-img img-fluid" width="500px;" height="500px;">
-				</div>
-				<div class="col-md-5">
-					<h1 class="text-white">Why Choose Us?</h1>
-					
-					<p class="para-1">Lorem ipsum dolor sit amet, consectetur adipisicing elitim id est laborum.dolore magna alsint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laboro.	</p>
-                    <a href="#" style="text-decoration: none">Join Us</a>
-				</div>
-			</div>
-		</div>
-	</div>
+                google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+                return function() {
+                    infowindow.setContent(
+                        "<h6><a href=houses/details/"+locations[i][0]+">"+locations[i][3]+"</a></h6>" +
+                        "<p> Name : "+locations[i][3]+"</p>"+
+                        "<p> Address : "+locations[i][4]+"</p>");
 
-
-
-    <section id="our-story">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6">
-              <h1 class="story">Our Story</h1>
-              <p class="pera">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
-  
-              <p class="pera">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua Ut enim.</p>
-            </div>
-            <div class="col-md-6">
-              <img src="{{ asset('frontend/img/about-us.png') }}" class="img-fluid">
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-
+                    infowindow.open(map, marker);                               
+                }
+                })(marker, i));
+            }              
+    }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&key={{env('GOOGLE_MAPS_API_KEY')}}&callback=initMap"  type="text/javascript"></script>
 @endsection

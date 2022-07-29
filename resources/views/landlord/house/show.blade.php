@@ -1,4 +1,5 @@
 @extends('layouts.backend.app')
+
 @section('title')
    Details - {{ $house->address }}
 @endsection
@@ -21,7 +22,21 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="table-responsive">
+                            <div class="row gallery">
+                                @foreach (json_decode($house->images) as $picture)
+                                    <div class="col-md-3">
+                                        <a href="{{ asset('images/'.$picture) }}">
+                                            <img  src="{{ asset('images/'.$picture) }}" class="img-fluid m-2" style="height: 150px;width: 100%; ">
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+
                             <table class="table">
+                                <tr>
+                                    <th>House Name</th>
+                                    <td>{{ $house->name_house }}</td>
+                                </tr>
                                 <tr>
                                     <th>Address</th>
                                     <td>{{ $house->address }}</td>
@@ -44,18 +59,18 @@
                                 </tr>
 
                                 <tr>
-                                    <th>Number of toilet</th>
+                                    <th>Bathrooms</th>
                                     <td>{{ $house->number_of_toilet }}</td>
                                 </tr>
 
                                 <tr>
-                                    <th>Number of belcony</th>
-                                    <td>{{ $house->number_of_belcony }}</td>
+                                    <th>Price Rent (RM)</th>
+                                    <td>{{ $house->rent }}</td>
                                 </tr>
 
                                 <tr>
-                                    <th>Rent</th>
-                                    <td>{{ $house->rent }}</td>
+                                    <th>House Description</th>
+                                    <td>{{ $house->desc }}</td>
                                 </tr>
 
                                 <tr>
@@ -66,25 +81,12 @@
                                         @else
                                             <span class="btn btn-danger">Not Available</span>
                                         @endif
-                                </td>
+                                    </td>
                                 </tr>
                             </table>
-                          </div>
-
-                          <div class="row gallery">
-                            @foreach (json_decode($house->images) as $picture)
-                                       <div class="col-md-3">
-                                           <a href="{{ asset('images/'.$picture) }}">
-                                                       <img  src="{{ asset('images/'.$picture) }}" class="img-fluid m-2" style="height: 150px;width: 100%; ">
-                                           </a>
-                                       </div>
-                            @endforeach
-                       </div>
-                    </div>
-                   
-                    <!-- /.card-body -->
-                  </div>
-                  <!-- /.card -->
+                        </div>
+                    </div> <!-- /.card-body -->
+                </div> <!-- /.card -->
             </div>
         </div>
     </div><!-- /.container -->
@@ -100,7 +102,11 @@
             noScrollbars: true
         });
    });
+
 </script>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-62c716acb689df28"></script>
+
 @endsection
 @section('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.css">

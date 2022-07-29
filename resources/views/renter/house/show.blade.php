@@ -37,6 +37,10 @@
                                     @include('partial.successMessage')
                                 </tr>
                                 <tr>
+                                    <th>House name</th>
+                                    <td>{{ $house->name_house }}</td>
+                                </tr>
+                                <tr>
                                     <th>Address</th>
                                     <td>{{ $house->address }}</td>
                                 </tr>
@@ -58,18 +62,18 @@
                                 </tr>
 
                                 <tr>
-                                    <th>Number of toilet</th>
+                                    <th>Bathrooms</th>
                                     <td>{{ $house->number_of_toilet }}</td>
                                 </tr>
 
                                 <tr>
-                                    <th>Number of belcony</th>
-                                    <td>{{ $house->number_of_belcony }}</td>
+                                    <th>Price Rent (RM)</th>
+                                    <td>{{ $house->rent }}</td>
                                 </tr>
 
                                 <tr>
-                                    <th>Rent</th>
-                                    <td>{{ $house->rent }}</td>
+                                    <th>Description</th>
+                                    <td>{{ $house->desc }}</td>
                                 </tr>
 
                                 <tr>

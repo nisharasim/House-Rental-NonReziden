@@ -5,9 +5,6 @@
     <div class="row">
       <div class="col-sm-12">
         <div>
-          <a href="{{ route('welcome') }}"> <img src="{{ asset('frontend/img/logoo.png') }}"
-              style="height: 80px; width: 140px" alt="logo" class="my-2 mx-2 text-center">
-          </a>
           {{-- <strong class="name">House Rental</strong> --}}
           {{-- <div class="mb-3" style="margin-left: 12px;" id="time"></div> --}}
         </div>

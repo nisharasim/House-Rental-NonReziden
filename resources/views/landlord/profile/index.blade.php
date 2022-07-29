@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 @section('title')
-   Profile Info
+   Profile Information
 @endsection
 @section('content')
 <div class="container card">
@@ -9,7 +9,7 @@
     </div>
     <div class="row p-3">
         <div class="col-md-4 text-center">
-        <img src="{{  $profile->image != null ? asset('storage/profile_photo/'. $profile->image) : asset('backend/img/user2-160x160.jpg') }}" 
+        <img src="{{ asset('/storage/profile_photo/'. $profile->image) }}" 
         style="height: 200px; width: 170px; margin-top:90px" class="elevation-2" alt="User Image">
         </div>
         <div class="col-md-8">
@@ -30,10 +30,7 @@
                         <th>Email</th>
                         <td>{{ $profile->email }}</td>
                     </tr>
-                    <tr>
-                        <th>Nid</th>
-                        <td>{{ $profile->nid }}</td>
-                    </tr>
+                
                     <tr>
                         <th>Contact</th>
                         <td>{{ $profile->contact }}</td>

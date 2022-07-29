@@ -27,7 +27,6 @@ class SettingsController extends Controller
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
             'email' => 'required|email|unique:users,email,'. $profile,
-            'nid' => 'required|numeric|unique:users,nid,'. $profile,
             'contact' => 'required|numeric|unique:users,contact,'. $profile,
             'username' => 'required|string|unique:users,username,'. $profile,
             'image' => 'mimes:jpeg,png,jpg',
@@ -63,7 +62,6 @@ class SettingsController extends Controller
         $profile->name =  $request->name;
         $profile->username =  $request->username;
         $profile->email =  $request->email;
-        $profile->nid =  $request->nid;
         $profile->contact =  $request->contact;
         $profile->save();
 

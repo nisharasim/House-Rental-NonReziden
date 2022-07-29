@@ -43,6 +43,22 @@
                             <tr>
                                 @include('partial.successMessage')
                             </tr>
+
+                            <div class="row gallery">
+                             @foreach (json_decode($house->images) as $picture)
+                            <div class="col-md-3">
+                                <a href="{{ asset('images/'.$picture) }}">
+                                    <img src="{{ asset('images/'.$picture) }}" class="img-fluid m-2"
+                                    style="height: 150px;width: 100%; ">
+                                </a>
+                            </div>
+                            @endforeach
+                            </div>
+
+                            <tr>
+                                <th>House Name</th>
+                                <td>{{ $house->name_house }}</td>
+                            </tr>
                             <tr>
                                 <th>Address</th>
                                 <td>{{ $house->address }}</td>
@@ -65,18 +81,18 @@
                             </tr>
 
                             <tr>
-                                <th>Number of toilet</th>
+                                <th>Bathrooms</th>
                                 <td>{{ $house->number_of_toilet }}</td>
                             </tr>
 
                             <tr>
-                                <th>Number of belcony</th>
-                                <td>{{ $house->number_of_belcony }}</td>
+                                <th>Rent Price (RM)</th>
+                                <td>{{ $house->rent }}</td>
                             </tr>
 
                             <tr>
-                                <th>Rent</th>
-                                <td>{{ $house->rent }}</td>
+                                <th>Description Details</th>
+                                <td>{{ $house->desc }}</td>
                             </tr>
 
                             <tr>
@@ -89,31 +105,17 @@
                                     @endif
                                 </td>
                             </tr>
-                            <tr>
+                        <!--<tr>
                                 <th>Share</th>
                                 <td>
                                     <div class="addthis_inline_share_toolbox"></div>
                                 </td>
-                            </tr>
+                            </tr>-->
                         </table>
-                    </div>
-
-                    <div class="row gallery">
-                        @foreach (json_decode($house->images) as $picture)
-                        <div class="col-md-3">
-                            <a href="{{ asset('images/'.$picture) }}">
-                                <img src="{{ asset('images/'.$picture) }}" class="img-fluid m-2"
-                                    style="height: 150px;width: 100%; ">
-                            </a>
-                        </div>
-                        @endforeach
                     </div>
 
 
                 </div>
-
-
-
                 <!-- /.card-body -->
             </div>
             <!-- /.card -->
@@ -219,7 +221,12 @@
        }
 
 </script>
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f5fb96836345445"></script>
+
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-62c716acb689df28"></script>
+
+
+<!--<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f5fb96836345445"></script>-->
 @endsection
 
 

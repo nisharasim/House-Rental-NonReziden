@@ -60,11 +60,11 @@
                                     {{ __('Login') }}
                                 </button>
 
-                                @if (Route::has('password.request'))
+                               <!-- @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
-                                @endif
+                                @endif -->
                             </div>
                         </div>
                     </form>
@@ -113,18 +113,14 @@
               </div>
             
             <button type="submit" class="btn btn-primary btn-block">Login</button>
-            @if (Route::has('password.request'))
+            <!-- @if (Route::has('password.request'))
                     <center> <a class="btn btn-link text-white" href="{{ route('password.request') }}">
                                                 {{ __('Forgot Your Password?') }}
                             </a>
                     </center>
-             @endif
-
-             <a href="{{ url('auth/google') }}" style="margin-top: 20px;" class="btn btn-lg btn-success btn-block">
-
-                <strong>Login With Google</strong>
-
-              </a> 
+             @endif -->
+            <br>
+            <br>
           </form> 
           </div>
           

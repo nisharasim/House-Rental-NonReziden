@@ -21,11 +21,10 @@
                         <thead>
                         <tr>
                           <th>Address</th>
-                          <th>Entry</th>
-                          <th>Rent</th>
+                          <th>Date Entry</th>
+                          <th>Price Rent</th>
                           <th>Renter Name</th>
                           <th>Renter Contact</th>
-                          <th>Renter Nid</th>
                           <th>Renter Email</th>
                           <th colspan="2">Action</th>
                         </tr>
@@ -51,13 +50,6 @@
                             @endisset
                           </td>
                           <td>
-                            @isset($book->renter->nid)
-                                {{ $book->renter->nid }}
-                            @else 
-                                This renter is deleted by admin
-                            @endisset  
-                          </td>
-                          <td>
                             @isset($book->renter->email)
                                 {{ $book->renter->email }}
                             @else 
@@ -79,7 +71,7 @@
                         </td>
 
                         <td>
-                            {{-- start accept form --}}
+                            {{-- start reject form --}}
                            <button class="btn btn-danger btn-sm" type="button" onclick="reject({{ $book->id }})">
                                Reject
                            </button>
@@ -88,7 +80,7 @@
                                @csrf
                            </form>
 
-                           {{-- end accept form --}}
+                           {{-- end reject form --}}
 
                        </td>
                       

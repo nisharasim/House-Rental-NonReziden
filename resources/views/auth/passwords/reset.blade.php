@@ -1,7 +1,7 @@
 @extends('layouts.frontend.app')
 
 @section('title')
-    House Rent - Give Password
+    Non Reziden - Give Password
 @endsection
 
 
@@ -67,4 +67,5 @@
         </div>
     </div>
 </div>
+
 @endsection

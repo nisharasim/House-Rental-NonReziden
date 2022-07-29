@@ -17,7 +17,7 @@ class RenterMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->role->id == 3 ) {
+        if (Auth::check() && Auth::user()->role_id == 3 ) {
             return $next($request);
          }else{
           return redirect()->route('login');

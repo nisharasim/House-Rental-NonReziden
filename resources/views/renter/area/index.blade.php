@@ -11,7 +11,7 @@
 
               <div class="card mt-5">
                     <div class="card-header">
-                      <h3 class="card-title float-left"><strong>Our All Areas ({{ $areacount }})</strong></h3>
+                      <h3 class="card-title float-left"><strong>All Area  ({{ $areacount }})</strong></h3>
                       
                     </div>
                     <!-- /.card-header -->

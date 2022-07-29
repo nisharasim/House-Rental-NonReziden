@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
 {
     use Notifiable;
 
@@ -16,7 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'role_id', 'name', 'username', 'email', 'password',  'google_id', 'nid', 'contact',
+        'role_id', 'name', 'username', 'email', 'password', 'contact',
     ];
 
     /**
@@ -32,10 +32,10 @@ class User extends Authenticatable implements MustVerifyEmail
      * The attributes that should be cast to native types.
      *
      * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    *protected $casts = [
+     *   'email_verified_at' => 'datetime',
+    *];
+    */
 
     public function role()
     {

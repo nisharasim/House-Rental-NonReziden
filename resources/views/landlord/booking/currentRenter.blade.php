@@ -21,12 +21,11 @@
                         <thead>
                         <tr>
                           <th>Address</th>
-                          <th>Entry</th>
-                          <th>Leave</th>
+                          <th>Date Entry</th>
+                          <th>Date Leave</th>
                           <th>Rent</th>
                           <th>Renter Name</th>
                           <th>Renter Contact</th>
-                          <th>Renter Nid</th>
                           <th>Renter Email</th>
                           <th>Action</th>
                         </tr>
@@ -51,13 +50,6 @@
                             @else 
                                 This renter is deleted by admin
                             @endisset
-                          </td>
-                          <td>
-                            @isset($book->renter->nid)
-                                {{ $book->renter->nid }}
-                            @else 
-                                This renter is deleted by admin
-                            @endisset  
                           </td>
                           <td>
                             @isset($book->renter->email)
@@ -90,7 +82,7 @@
                       
             </div> <!-- /.card-body -->
               @else 
-                 <h2 class="text-center text-info font-weight-bold m-3">No Booking History Found</h2>
+                 <h2 class="text-center text-info font-weight-bold m-3">There is no booking house found</h2>
               @endif
 
                <div class="pagination">

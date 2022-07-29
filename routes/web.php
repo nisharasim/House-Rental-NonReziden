@@ -11,6 +11,7 @@
 |
  */
 
+
 Route::get('/', 'HomeController@index')->name('welcome');
 
 Route::get('/descending-order-houses-price', 'HomeController@highToLow')->name('highToLow');
@@ -25,16 +26,14 @@ Route::get('/available-houses/area/{id}', 'HomeController@areaWiseShow')->name('
 
 Route::post('/house-booking/id/{id}', 'HomeController@booking')->name('booking');
 
-Auth::routes(['verify' => true]);
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
 
-Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
 
 //admin
 
-Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin', 'verified']],
+Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']],
     function () {
         Route::get('dashboard', 'DashboardController@index')->name('dashboard');
         Route::resource('area', 'AreaController');
@@ -56,7 +55,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
 
 //landlord
 
-Route::group(['as' => 'landlord.', 'prefix' => 'landlord', 'namespace' => 'Landlord', 'middleware' => ['auth', 'landlord', 'verified']],
+Route::group(['as' => 'landlord.', 'prefix' => 'landlord', 'namespace' => 'Landlord', 'middleware' => ['auth', 'landlord']],
     function () {
         Route::get('dashboard', 'DashboardController@index')->name('dashboard');
         Route::resource('area', 'AreaController');
@@ -77,7 +76,7 @@ Route::group(['as' => 'landlord.', 'prefix' => 'landlord', 'namespace' => 'Landl
 
 //renter
 
-Route::group(['as' => 'renter.', 'prefix' => 'renter', 'namespace' => 'renter', 'middleware' => ['auth', 'renter', 'verified']],
+Route::group(['as' => 'renter.', 'prefix' => 'renter', 'namespace' => 'renter', 'middleware' => ['auth', 'renter']],
     function () {
         Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 

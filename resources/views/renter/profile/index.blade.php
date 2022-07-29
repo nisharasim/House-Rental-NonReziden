@@ -31,10 +31,6 @@
                         <td>{{ $profile->email }}</td>
                     </tr>
                     <tr>
-                        <th>Nid</th>
-                        <td>{{ $profile->nid }}</td>
-                    </tr>
-                    <tr>
                         <th>Contact</th>
                         <td>{{ $profile->contact }}</td>
                     </tr>

@@ -25,7 +25,7 @@
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-
+      <!-- Sidebar for admin -->
         @if (Request::is('admin*'))
         <li class="nav-item has-treeview active">
           <a href="{{ route('admin.dashboard') }}"
@@ -41,7 +41,7 @@
         <li class="nav-item has-treeview">
           <a href="{{ route('admin.area.index') }}" class="nav-link {{ Request::is('admin/area*') ? 'active' : '' }}">
             <i class="fa fa-map-marker" aria-hidden="true"></i>
-            <p class="pl-2">Areas</p>
+            <p class="pl-2">List of Area</p>
           </a>
         </li>
 
@@ -50,7 +50,7 @@
           <a href="{{ route('admin.house.index') }}" class="nav-link {{ Request::is('admin/house*') ? 'active' : '' }}">
             <i class="fa fa-home" aria-hidden="true"></i>
             <p class="pl-2">
-              Houses
+              List of Houses
             </p>
           </a>
         </li>
@@ -79,16 +79,6 @@
         </li>
 
         <li class="nav-item has-treeview">
-          <a href="{{ route('admin.profile.show') }}"
-            class="nav-link {{ Request::is('admin/profile-info') ? 'active' : '' }}">
-            <i class="fas fa-user"></i>
-            <p class="pl-2">
-              Profile Info
-            </p>
-          </a>
-        </li>
-
-        <li class="nav-item has-treeview">
           <a href="{{ route('admin.booked.list') }}"
             class="nav-link {{ Request::is('admin/booked-houses-list') ? 'active' : '' }}">
             <i class="fas fa-store-alt-slash"></i>
@@ -108,9 +98,19 @@
           </a>
         </li>
 
+        <li class="nav-item has-treeview">
+          <a href="{{ route('admin.profile.show') }}"
+            class="nav-link {{ Request::is('admin/profile-info') ? 'active' : '' }}">
+            <i class="fas fa-user"></i>
+            <p class="pl-2">
+              Profile Info
+            </p>
+          </a>
+        </li>
 
         @endif
 
+        <!-- Sidebar for Landlord -->
         @if (Request::is('landlord*'))
         <li class="nav-item has-treeview">
           <a href="{{ route('landlord.dashboard') }}"
@@ -127,7 +127,7 @@
           <a href="{{ route('landlord.area.index') }}"
             class="nav-link {{ Request::is('landlord/area*') ? 'active' : '' }}">
             <i class="fa fa-map-marker" aria-hidden="true"></i>
-            <p class="pl-2">Area</p>
+            <p class="pl-2">List of Area</p>
           </a>
         </li>
 
@@ -136,17 +136,7 @@
             class="nav-link {{ Request::is('landlord/house*') ? 'active' : '' }}">
             <i class="fa fa-home" aria-hidden="true"></i>
             <p class="pl-2">
-              House
-            </p>
-          </a>
-        </li>
-
-        <li class="nav-item has-treeview">
-          <a href="{{ route('landlord.profile.show') }}"
-            class="nav-link {{ Request::is('landlord/profile-info*') ? 'active' : '' }}">
-            <i class="fas fa-user"></i>
-            <p class="pl-2">
-              Profile Info
+              List of House
             </p>
           </a>
         </li>
@@ -166,7 +156,7 @@
             class="nav-link {{ Request::is('landlord/booked/currently/renter') ? 'active' : '' }}">
             <i class="fas fa-store-alt-slash"></i>
             <p class="pl-2">
-              Booked Houses
+              Booked House
             </p>
           </a>
         </li>
@@ -180,9 +170,28 @@
             </p>
           </a>
         </li>
+
+        <li class="nav-item has-treeview">
+          <a href="{{ route('landlord.profile.show') }}"
+            class="nav-link {{ Request::is('landlord/profile-info*') ? 'active' : '' }}">
+            <i class="fas fa-user"></i>
+            <p class="pl-2">
+              Profile Info
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item has-treeview">
+          <a href="{{ route('welcome') }}" class="nav-link">
+            <i class="fas fa-border-style"></i>
+            <p class="pl-2">
+              Go To Home Page
+            </p>
+          </a>
+        </li>
         @endif
 
-
+      <!-- Sidebar for Renter -->
         @if (Request::is('renter*'))
         <li class="nav-item has-treeview">
           <a href="{{ route('renter.dashboard') }}"
@@ -198,17 +207,7 @@
         <li class="nav-item has-treeview">
           <a href="{{ route('renter.areas') }}" class="nav-link {{ Request::is('renter/areas') ? 'active' : '' }}">
             <i class="fa fa-map-marker" aria-hidden="true"></i>
-            <p class="pl-2">Areas</p>
-          </a>
-        </li>
-
-        <li class="nav-item has-treeview">
-          <a href="{{ route('renter.profile.show') }}"
-            class="nav-link {{ Request::is('renter/profile-info*') ? 'active' : '' }}">
-            <i class="fas fa-user"></i>
-            <p class="pl-2">
-              Profile Info
-            </p>
+            <p class="pl-2">List of Area</p>
           </a>
         </li>
 
@@ -216,18 +215,7 @@
           <a href="{{ route('renter.allHouses') }}" class="nav-link {{ Request::is('renter/house*') ? 'active' : '' }}">
             <i class="fa fa-home" aria-hidden="true"></i>
             <p class="pl-2">
-              House
-            </p>
-          </a>
-        </li>
-
-        <li class="nav-item has-treeview">
-          <a href="{{ route('renter.booking.history') }}"
-            class="nav-link {{ Request::is('renter/booking/history') ? 'active' : '' }}">
-            <i class="fas fa-history"></i>
-            <p class="pl-2">
-              History
-
+              List of House
             </p>
           </a>
         </li>
@@ -238,6 +226,26 @@
             <i class="fas fa-chalkboard"></i>
             <p class="pl-2">
               Pending Booking
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item has-treeview">
+          <a href="{{ route('renter.booking.history') }}"
+            class="nav-link {{ Request::is('renter/booking/history') ? 'active' : '' }}">
+            <i class="fas fa-history"></i>
+            <p class="pl-2">
+              History Booking
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item has-treeview">
+          <a href="{{ route('renter.profile.show') }}"
+            class="nav-link {{ Request::is('renter/profile-info*') ? 'active' : '' }}">
+            <i class="fas fa-user"></i>
+            <p class="pl-2">
+              Profile Info
             </p>
           </a>
         </li>

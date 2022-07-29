@@ -24,7 +24,7 @@ House Renter - Search Result
                 </div>
                 <div class="card-body">
                     <p>
-                        <h4><strong><i class="fas fa-map-marker-alt"> {{ $house->area->name }}, Sylhet</i> </strong>
+                        <h4><strong><i class="fas fa-map-marker-alt"> {{ $house->area->name }} </i> </strong>
                         </h4>
                     </p>
 
@@ -34,7 +34,7 @@ House Renter - Search Result
                     <p class="grey"><i class="fas fa-bed"></i> {{ $house->number_of_room }} Bedrooms <i
                             class="fas fa-bath float-right"> {{ $house->number_of_toilet }} Bathrooms</i> </p>
                     <p class="grey">
-                        <h4>৳ {{ $house->rent }} BDT</i></h4>
+                        <h4>RM {{ $house->rent }}</i></h4>
                     </p>
                 </div>
                 <div class="card-footer">

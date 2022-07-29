@@ -105,6 +105,6 @@ class AreaController extends Controller
             return redirect()->back();
         }
         $area->delete();
-        return redirect(route('landlord.area.index'))->with('success', 'Area Removved Successfully');
+        return redirect(route('landlord.area.index'))->with('success', 'Area Removed Successfully');
     }
 }
