@@ -2,6 +2,13 @@
 
 use Illuminate\Support\Str;
 
+$url = parse_url(getenv("mysql://b385bc8a0f8b0b:cf174eb4@us-cdbr-east-06.cleardb.net/heroku_92d49ab69b88fb3?reconnect=true"));
+
+$host = $url["host"] ?? null;
+$username = $url["user"] ?? null;
+$password = $url["pass"] ?? null;
+$database = substr($url["path"], 1);
+
 return [
 
     /*
@@ -15,7 +22,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'heroku_92d49ab69b88fb3'),
 
     /*
     |--------------------------------------------------------------------------
@@ -34,6 +41,17 @@ return [
     */
 
     'connections' => [
+
+        'heroku_92d49ab69b88fb3' => array(
+            'driver' => 'mysql',
+            'host' => $host,
+            'database' => $database,
+            'username' => $username,
+            'password' => $password,
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+        ),
 
         'sqlite' => [
             'driver' => 'sqlite',
